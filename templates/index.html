@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Purview App- Search</title>
+        <style>
+            #output-box {
+                border: 1px solid blueviolet;
+                font-size:10pt;
+                height:80px;
+                width:80%;
+                padding: 10px;
+                margin-left: 10%;
+                margin-top: 5px;
+            }
+            #output-box-small {
+                border: 1px solid blueviolet;
+                font-size:10pt;
+                height:40px;
+                width:80%;
+                padding: 10px;
+                margin-left: 10%;
+                margin-top: 5px;
+            }
+            #txtbox
+            {
+                border: 1px solid blueviolet;
+                font-size:10pt;
+                height:50px;
+                width: 80%;
+                padding: 10px;
+                margin-left: 10%;
+                margin-top: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="{{ url_for('static', filename='app5_img1.jpg') }}" alt="HTML5 Icon" width="100%" height="128">
+        <form method="post">
+            <br><br><label for="user_input" style="font-size:15pt;color:blueviolet"><center>Please enter your query on internal customer service data</center></label><br> 
+            <!input type="text" id="user_input" name="user_input" style="txtbox">
+            <!input type="text" id="user_input" name="user_input" style="font-size:10pt;color:blueviolet;height:50px;width:800px;">
+            <input type="text" id="txtbox" name="user_input" value="{{ input }}"><br><br>&ensp;
+            <label for="puser_id" style="margin-left: 10%">My User ID</label>
+            <input type="text" name="puser_id" value="{{ puser_id }}" >
+
+            {% if ppolicy == "penforce" %}
+                <input type="checkbox" id="ppolicy" name="ppolicy" value="penforce" style="margin-left: 5%" checked>
+            {% else %}
+                <input type="checkbox" id="ppolicy" name="ppolicy" value="penforce" style="margin-left: 5%">
+            {% endif %}
+            <label for="ppolicy"> Enforce Purview Policy</label>
+
+            {% if pstrict == "pstrict" %}
+                <input type="checkbox" id="pstrict" name="pstrict" value="pstrict" style="margin-left: 5%" checked>
+            {% else %}
+                <input type="checkbox" id="pstrict" name="pstrict" value="pstrict" style="margin-left: 5%">
+            {% endif %}
+            <label for="pstrict"> Strict </label><br>
+            
+            {% if input == null %}
+            <br><br>
+            <input type="submit" style="color:blue; margin-left: 45%;width: 125px" value="Submit"><br><br>
+            {% endif %}
+        </form> 
+        {% if output %}
+            <p><br>
+                <div style="font-size:15pt;color:blueviolet"><center>Sensitive data identified by LLM</center></div> </p>
+            <div id="output-box">
+                {{ output }}
+            </div>
+        {% endif %}
+    </body>
+</html>
