@@ -42,6 +42,10 @@ def readSampleDoc():
         # Read all lines of the file
         return file.read()
 
+def readPolicyList ():
+    with open('C:\\Users\\roshnipatil\\Documents\\GitHub\\policylist.txt', 'r') as file:
+        # Read all lines of the file
+        return file.read()
 
 #Open the file for reading
 def writeprompttofile(prompt_text):
