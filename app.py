@@ -33,24 +33,24 @@ def index():
         writeprompttofile(orig_prompt)
         print (orig_prompt)
 
-        #response = openai.Completion.create(
-        #    model="text-davinci-003",
+        response = openai.Completion.create(
+            model="text-davinci-003",
             #model="text-ada-001",
-        #    prompt=orig_prompt,
-        #    max_tokens=100,
-        #    temperature=0.6,
-        #)
+            prompt=orig_prompt,
+            max_tokens=100,
+            temperature=0.6,
+        )
         # output = url_for("index", result=response.choices[0].text)
         output = "no output"
-        #print (" response choice - no of elements :", len(response['choices']))
-        #if 'choices' in response:
-        #    if len(response['choices']) > 0:
-        #        output = response.choices[0].text
-        #        print("ChatGPT outputlen , output ", len(output), output)
-        #    else:
-        #        print("response len 0")
-        #else:
-        #    print("Opps sorry, you beat the AI this time")
+        print (" response choice - no of elements :", len(response['choices']))
+        if 'choices' in response:
+            if len(response['choices']) > 0:
+                output = response.choices[0].text
+                print("ChatGPT outputlen , output ", len(output), output)
+            else:
+                print("response len 0")
+        else:
+            print("Opps sorry, you beat the AI this time")
 
         #print(response)
        
@@ -60,12 +60,12 @@ def index():
 
 
 def generate_prompt1(user_input, policy_list):
-    return f""" {user_input} \n
-    Example of a policy : 
-    {{\"Action\": \"Deny\", \"operation\": \"Read\", \"classification\": \"PII\", \"user\":\"alice@microsoft.com\",\"datasource\" : \"sql\"}}
+    return f"""{user_input} \n
+Example of a policy : 
+{{\"Action\": \"Deny\", \"operation\": \"Read\", \"classification\": \"PII\", \"user\":\"alice@microsoft.com\",\"datasource\" : \"sql\"}}
 
-    List of all policies:
-    {policy_list}"""
+List of all policies:
+{policy_list}"""
 
 
 
